@@ -1,5 +1,3 @@
-# Steps to make this tuto work :  
-
 1. Local vs code azure function dev : [Further Details](https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#run-functions-locally) 
 1. [Install azurite](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) 
 1. Start azurite : 
@@ -24,7 +22,21 @@
 	```
 1. Create a custom endpoint (free) : 
 	- [Create a free endpoint](https://dashboard.ngrok.com/cloud-edge/endpoints)
-1. Create an edge tunnel and connect it to the local function running : 
+1. Create an edge tunnel and configure it to the azure function host :
+	``` bash
+    ngrok config edit
+    ```
+    - Inside the file (retrieve the config from `Cloud Edge > Edges > Start a Tunnel > Start a tunnel from a config file`: 
+    ``` yaml
+    version: 2
+	authtoken: xxx
+	tunnels:
+  	  my_tunnel_name:
+    	labels:
+          - edge=xxx
+        addr: http://localhost:80
+    ```
+1. Manually serve the tunnel from the bash terminal : 
 	``` bash
 	ngrok tunnel --label edge=edghts_2ShvSEl8k4SQImfDoMaECki0yop http://localhost:7071
 	```
@@ -69,5 +81,7 @@
     ```bash
     https://carefully-awake-jennet.ngrok-free.app/runtime/webhooks/eventgrid?functionName=EventGridExample
     ```
+1. Then start everything together from vscode `debug > Expose to Internet`: 
+   1. Bare in mind that the reverse-proxy will be exposed via the token configured in the `ngrok config edit` step and communication remains encrypted through https
 
 The source code can be found here : https://github.com/Justrebl/AzureFunction-unzipbigfiles 
