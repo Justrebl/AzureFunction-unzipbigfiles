@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type":"shell",
+      "label" : "Expose debug to internet",
+      "command": "ngrok tunnel --label edge=edghts_2ShvSEl8k4SQImfDoMaECki0yop http://localhost:7071",
+      "dependsOn": "func: host start"
+    },
+    {
+      "type": "func",
+      "label": "func: host start",
+      "command": "host start",
+      "problemMatcher": "$func-java-watch",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/target/azure-functions/unzipfunc-20230717151702055"
+      },
+      "dependsOn": "package (functions)"
+    },
+    {
+      "label": "package (functions)",
+      "command": "mvn clean package -DskipTests",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
