@@ -20,7 +20,7 @@
 	``` bash
 	ngrok config add-authtoken <token>
 	```
-1. Create a custom endpoint (free) : 
+1. Create a custom endpoint (free and optional : Will help with keeping the same domain name for future tests) : 
 	- [Create a free endpoint](https://dashboard.ngrok.com/cloud-edge/endpoints)
 1. Create an edge tunnel and configure it to the azure function host :
 	``` bash
