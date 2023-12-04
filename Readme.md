@@ -1,3 +1,5 @@
+From [this Tutorial](https://learn.microsoft.com/en-us/azure/azure-functions/functions-event-grid-blob-trigger?tabs=isolated-process%2Cnodejs-v4&pivots=programming-language-csharp#start-local-debugging)
+
 1. Local vs code azure function dev : [Further Details](https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#run-functions-locally) 
 1. [Install azurite](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) 
 1. Start azurite : 
